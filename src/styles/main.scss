@@ -1,3 +1,5 @@
+@import './base/colors';
+
 body {
-  background-color: burlywood;
+  background-color: $gallery;
 }
