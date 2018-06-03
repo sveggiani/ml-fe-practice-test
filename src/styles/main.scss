@@ -1,5 +1,11 @@
-@import './base/colors';
+@import './settings/foundation';
 
-body {
-  background-color: $gallery;
-}
+@import 'foundation';
+@include foundation-global-styles;
+@include foundation-xy-grid-classes;
+@include foundation-visibility-classes;
+
+@import './settings/colors';
+@import './settings/sizes';
+@import './base/init';
+@import './base/elements';
