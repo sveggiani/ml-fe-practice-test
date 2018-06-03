@@ -219,7 +219,10 @@ module.exports = {
               {
                 loader: 'sass-loader',
                 options: {
-                  includePaths: [paths.appSrc]
+                  includePaths: [
+                    paths.appSrc,
+                    'node_modules/foundation-sites/scss'
+                  ]
                 }
               }
             ]
