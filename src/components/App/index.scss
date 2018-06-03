@@ -1,0 +1,7 @@
+@import '../../styles/common';
+
+.app {
+  @at-root &__header {
+    background-color: $turbo;
+  }
+}

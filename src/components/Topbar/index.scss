@@ -1,0 +1,14 @@
+@import '../../styles/common';
+
+.topbar {
+  @include xy-grid-container($padding: false);
+  @include xy-grid;
+  @include flex-align($x: center);
+  padding: $spacing-xs 0;
+
+  @at-root &__content {
+    @include xy-cell(10);
+    display: grid;
+    grid-template-columns: rem-calc(80) auto;
+  }
+}

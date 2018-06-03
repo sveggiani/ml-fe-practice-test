@@ -1,0 +1,23 @@
+@import '../../styles/common';
+
+.search {
+  display: grid;
+  grid-template-columns: auto rem-calc(40);
+
+  @at-root &__button {
+    background-color: $gallery;
+    border-bottom-right-radius: $border-round-sm;
+    border-top-right-radius: $border-round-sm;
+  }
+
+  @at-root &__box {
+    border: 0;
+    border-bottom-left-radius: $border-round-sm;
+    border-top-left-radius: $border-round-sm;
+    color: $dove-gray;
+    font-size: rem-calc(18);
+    height: rem-calc(38);
+    line-height: rem-calc(38);
+    padding: 0 $spacing-sm;
+  }
+}
