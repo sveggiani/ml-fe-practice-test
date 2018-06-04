@@ -1,0 +1,14 @@
+@import '../../styles/common';
+
+.button {
+  background-color: $dodger-blue;
+  border-radius: $border-round-sm;
+  color: $white;
+  font-size: rem-calc(18);
+  height: rem-calc(44);
+  padding: 0 $spacing-sm;
+
+  @at-root &--expanded {
+    width: 100%;
+  }
+}

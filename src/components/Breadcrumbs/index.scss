@@ -1,0 +1,27 @@
+@import '../../styles/common';
+
+.breadcrumbs {
+  color: $dove-gray;
+  font-size: rem-calc(14);
+
+  @at-root &__items {
+    @at-root &__item {
+      color: $dove-gray;
+      text-decoration: none;
+
+      &:last-child {
+        font-weight: bold;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &::after {
+        color: $dusty-gray;
+        content: '>';
+        margin: 0 $spacing-xs;
+      }
+    }
+  }
+}

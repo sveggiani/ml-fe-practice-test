@@ -1,0 +1,66 @@
+@import '../../styles/common';
+
+.product-detail {
+  @include xy-grid-container($padding: false);
+  @include xy-grid;
+  @include flex-align($x: center);
+
+  @at-root &__header {
+    @include xy-cell(10);
+    padding: $spacing-sm 0;
+  }
+
+  @at-root &__content {
+    @include xy-cell(10);
+    background-color: $white;
+    border-radius: $border-round-sm;
+    display: grid;
+    grid-row-gap: rem-calc($spacing-sm);
+    padding: $spacing-md;
+
+    @at-root &__product {
+      display: grid;
+      grid-column-gap: rem-calc(16);
+      grid-template-columns: rem-calc(680) auto;
+
+      .description {
+        margin-top: rem-calc(120);
+
+        p {
+          color: $dusty-gray;
+          font-size: rem-calc(16);
+          margin: 0 0 rem-calc($spacing-sm);
+        }
+
+        .title {
+          font-size: rem-calc(28);
+          font-weight: normal;
+          margin: 0 0 $spacing-md;
+        }
+      }
+
+      .image {
+      }
+
+      .info {
+        color: $mine-shaft;
+        line-height: 170%;
+
+        .title {
+          font-size: rem-calc(24);
+          margin: 0 0 $spacing-md;
+        }
+      }
+
+      .price {
+        font-size: rem-calc(46);
+        margin: 0 0 $spacing-md;
+      }
+
+      .status {
+        font-size: rem-calc(14);
+        margin: 0 0 $spacing-sm;
+      }
+    }
+  }
+}

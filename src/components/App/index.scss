@@ -4,4 +4,10 @@
   @at-root &__header {
     background-color: $turbo;
   }
+
+  @at-root &__footer {
+    margin-top: rem-calc(100);
+    opacity: 0.3;
+    text-align: center;
+  }
 }
