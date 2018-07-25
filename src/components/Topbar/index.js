@@ -1,14 +1,14 @@
 import React from 'react';
 
 import Brand from '../Brand';
-import Search from '../Search';
+import SearchItems from '../../containers/SearchItems';
 import './index.scss';
 
 const Topbar = () => (
   <div className="topbar">
     <div className="topbar__content">
       <Brand />
-      <Search />
+      <SearchItems />
     </div>
   </div>
 );
