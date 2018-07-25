@@ -11,7 +11,8 @@ const api = {
   }),
   endpoints: {
     search: '/sites/MLA/search',
-    detail: '/items'
+    detail: '/items',
+    category: '/categories'
   }
 };
 
@@ -75,16 +76,20 @@ const apiRouter = app => {
         api.connection.get(`${api.endpoints.detail}/${id}/description`)
       ]);
 
+      // fetch category data
+      // https://developers.mercadolibre.com/en_us/categories-and-listings
+      const { category_id: categoryId } = itemDetail;
+      const { data: categoryDetail } = await api.connection.get(
+        `${api.endpoints.category}/${categoryId}`
+      );
+
       // format data
       const itemDetails = {
         author: {
           name: 'Just',
           lasname: 'Auser'
         },
-        categories: filters
-          .find(item => item.id === 'category')
-          .values.find(item => item.path_from_root.length)
-          .path_from_root.map(item => item.name),
+        categories: categoryDetail.path_from_root.map(item => item.name),
         item: {
           id: itemDetail.id,
           title: itemDetail.title,
