@@ -28,7 +28,7 @@ const apiRouter = app => {
       const { q } = request.query;
       const {
         data: { filters, results }
-      } = await api.connection.get(`${api.endpoints.search}?q=${q}`);
+      } = await api.connection.get(`${api.endpoints.search}?q=${q}&limit=4`);
 
       // format data
       // TODO: this should be parsed separately

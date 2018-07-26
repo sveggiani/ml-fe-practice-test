@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import uuidv1 from 'uuid/v1';
 
 import './index.scss';
 
@@ -9,7 +10,7 @@ const Breadcrumbs = ({ items }) => (
       <div className="breadcrumbs">
         <div className="breadcrumbs__items">
           {items.map(item => (
-            <a className="breadcrumbs__items__item" href="#">
+            <a className="breadcrumbs__items__item" href="#" key={uuidv1()}>
               {item}
             </a>
           ))}
