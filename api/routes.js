@@ -5,6 +5,7 @@ import path from 'path';
 // Load ENV variables
 dotenv.config({ path: path.join(__dirname, '/../.env') });
 
+// Connection helper
 const api = {
   connection: axios.create({
     baseURL: process.env.SOURCE_API_URL

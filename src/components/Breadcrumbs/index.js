@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const Breadcrumbs = () => (
-  <div className="breadcrumbs">
-    <div className="breadcrumbs__items">
-      <a className="breadcrumbs__items__item" href="#">
-        Electrónica, Audio y Video
-      </a>
-      <a className="breadcrumbs__items__item" href="#">
-        Reproductores
-      </a>
-      <a className="breadcrumbs__items__item" href="#">
-        iPod
-      </a>
-      <a className="breadcrumbs__items__item" href="#">
-        iPod Touch
-      </a>
-      <a className="breadcrumbs__items__item" href="#">
-        32 Gb
-      </a>
-    </div>
-  </div>
+const Breadcrumbs = ({ items }) => (
+  <Fragment>
+    {items.length ? (
+      <div className="breadcrumbs">
+        <div className="breadcrumbs__items">
+          {items.map(item => (
+            <a className="breadcrumbs__items__item" href="#">
+              {item}
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : null}
+  </Fragment>
 );
+
+Breadcrumbs.propTypes = {
+  items: PropTypes.array
+};
+
+Breadcrumbs.defaultProps = {
+  items: []
+};
 
 export default Breadcrumbs;

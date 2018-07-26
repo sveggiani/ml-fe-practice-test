@@ -8,7 +8,7 @@ import ProductsList from '../components/ProductsList';
 
 class DisplaySearchResults extends Component {
   static propTypes = {
-    isFetching: PropTypes.bool,
+    categories: PropTypes.array,
     items: PropTypes.array,
     location: PropTypes.object,
     searchItems: PropTypes.func.isRequired
@@ -35,17 +35,17 @@ class DisplaySearchResults extends Component {
   }
 
   render() {
-    const { isFetching, items } = this.props;
+    const { items, categories } = this.props;
     return (
       <div>
-        {isFetching && <div>...</div>}
-        <ProductsList products={items} />
+        <ProductsList items={items} categories={categories} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  categories: state.itemsSearch.categories,
   isFetching: state.itemsSearch.isFetching,
   items: state.itemsSearch.data
 });

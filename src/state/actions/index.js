@@ -14,7 +14,7 @@ export const RECEIVE_SEARCH_ITEMS = 'RECEIVE_SEARCH_ITEMS';
  */
 export function itemsSearchFailure() {
   return {
-    type: ITEMS_SEARCH_SUCCESS
+    type: ITEMS_SEARCH_FAILURE
   };
 }
 
@@ -40,9 +40,14 @@ export function fetchSearchItems(query) {
   return dispatch => {
     // init search actions
     dispatch(itemsSearchRequest(query));
-    api.connection.get(`${api.endpoints.search}?q=${query}`).then(response => {
-      dispatch(itemsSearchSuccess());
-      dispatch(receiveSearchItems(response.data));
-    });
+    api.connection
+      .get(`${api.endpoints.search}?q=${query}`)
+      .then(response => {
+        dispatch(itemsSearchSuccess());
+        dispatch(receiveSearchItems(response.data));
+      })
+      .catch(() => {
+        dispatch(itemsSearchFailure());
+      });
   };
 }

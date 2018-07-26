@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   data: [],
+  categories: [],
   fetched: false,
   isFetching: false,
   lastFetchedOn: false,
@@ -37,7 +38,8 @@ const itemsSearch = (state = initialState, action) => {
     case RECEIVE_SEARCH_ITEMS:
       return {
         ...state,
-        data: action.response.results
+        categories: action.response.categories,
+        data: action.response.items
       };
     default:
       return state;
