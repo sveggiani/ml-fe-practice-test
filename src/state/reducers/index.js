@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import productDetail from './productDetail';
+import itemDetail from './itemDetail';
 import itemsSearch from './itemsSearch';
 
 const rootReducer = combineReducers({
-  productDetail,
+  itemDetail,
   itemsSearch
 });
 

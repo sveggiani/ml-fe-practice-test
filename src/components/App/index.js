@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Topbar from '../Topbar';
-import ProductDetail from '../ProductDetail';
+import DisplayItemDetail from '../../containers/DisplayItemDetail';
 import DisplaySearchResults from '../../containers/DisplaySearchResults';
+import Topbar from '../Topbar';
 
 import './index.scss';
 
@@ -16,7 +16,7 @@ const App = () => (
       <div className="app__content">
         <Route exact path="/" />
         <Route path="/items" component={DisplaySearchResults} />
-        <Route path="/item/:id" component={ProductDetail} />
+        <Route path="/item/:id" component={DisplayItemDetail} />
       </div>
       <div className="app__footer" />
     </div>

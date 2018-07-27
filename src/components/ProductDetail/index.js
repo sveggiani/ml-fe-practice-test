@@ -1,45 +1,57 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import Breadcrumbs from '../Breadcrumbs';
 import Button from '../Button';
+import Spinner from '../Spinner';
+import { formatPrice } from '../../utils';
+
 import './index.scss';
 
-const ProductDetail = () => (
-  <div className="product-detail">
-    <div className="product-detail__header">
-      <Breadcrumbs />
-    </div>
-    <div className="product-detail__content">
-      <div className="product-detail__content__product">
-        <div className="image">
-          <img
-            src="http://lorempixel.com/680/560/technics"
-            alt="Product view"
-          />
+const ProductDetail = ({ categories, item, isFetching }) => (
+  <Fragment>
+    {!isFetching ? (
+      <div className="product-detail">
+        <div className="product-detail__header">
+          <Breadcrumbs items={categories} />
         </div>
-        <div className="info">
-          <p className="status">Nuevo - 237 vendidos</p>
-          <h1 className="title">Deco Reverse Sombrero Oxford</h1>
-          <p className="price">$ 1.980</p>
-          <Button expanded>Comprar</Button>
-        </div>
-        <div className="description">
-          <h2 className="title">Descripción del producto</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-            provident temporibus molestias error hic beatae iure vero. Aliquam
-            ipsam aut distinctio expedita harum vitae porro molestiae
-            repellendus perferendis, facere non.
-          </p>
+        <div className="product-detail__content">
+          <div className="product-detail__content__product">
+            <div className="image">
+              <img src={item.picture} alt={`Imagen de ${item.title}`} />
+            </div>
+            <div className="info">
+              <p className="status">
+                {item.condition === 'new' ? 'Nuevo - ' : ''}
+                {`${item.sold_quantity} vendidos`}
+              </p>
+              <h1 className="title">{item.title}</h1>
+              <p className="price">{formatPrice(item.price)}</p>
+              <Button expanded>Comprar</Button>
+            </div>
+            <div className="description">
+              <h2 className="title">Descripción del producto</h2>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    item.description &&
+                    item.description.replace(/\n/g, '<br />')
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    ) : (
+      <Spinner />
+    )}
+  </Fragment>
 );
 
-// ProductsList.propTypes = {
-//   products: PropTypes.array
-// };
+ProductDetail.propTypes = {
+  categories: PropTypes.array,
+  item: PropTypes.object,
+  isFetching: PropTypes.bool
+};
 
 export default ProductDetail;
