@@ -18,9 +18,10 @@ export const RECEIVE_ITEM_DETAIL = 'RECEIVE_ITEM_DETAIL';
  */
 
 // Items search
-export function itemsSearchFailure() {
+export function itemsSearchFailure(message) {
   return {
-    type: ITEMS_SEARCH_FAILURE
+    type: ITEMS_SEARCH_FAILURE,
+    message
   };
 }
 
@@ -52,16 +53,22 @@ export function fetchSearchItems(query) {
         dispatch(itemsSearchSuccess());
         dispatch(receiveSearchItems(response.data));
       })
-      .catch(() => {
-        dispatch(itemsSearchFailure());
+      .catch(({ response }) => {
+        const { status } = response;
+        const errorMessage =
+          status === 404
+            ? 'No se encontraron productos para su búsqueda :('
+            : 'Ocurrió un error desconocido. Por favor intente nuevamente';
+        dispatch(itemsSearchFailure(errorMessage));
       });
   };
 }
 
 // Items detail
-export function itemDetailFailure() {
+export function itemDetailFailure(message) {
   return {
-    type: ITEM_DETAIL_FAILURE
+    type: ITEM_DETAIL_FAILURE,
+    message
   };
 }
 
@@ -93,8 +100,13 @@ export function fetchItemDetail(id) {
         dispatch(itemDetailSuccess());
         dispatch(receiveItemDetail(response.data));
       })
-      .catch(() => {
-        dispatch(itemDetailFailure());
+      .catch(({ response }) => {
+        const { status } = response;
+        const errorMessage =
+          status === 404
+            ? 'No encontró el producto solicitado :('
+            : 'Ocurrió un error desconocido. Por favor intente nuevamente';
+        dispatch(itemDetailFailure(errorMessage));
       });
   };
 }

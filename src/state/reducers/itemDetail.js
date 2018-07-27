@@ -8,7 +8,9 @@ import {
 const initialState = {
   categories: [],
   data: {},
+  errorMessage: '',
   fetched: false,
+  hasError: false,
   id: '',
   isFetching: false,
   lastFetchedOn: false
@@ -19,6 +21,7 @@ const itemDetail = (state = initialState, action) => {
     case ITEM_DETAIL_REQUEST:
       return {
         ...state,
+        hasError: false,
         isFetching: true,
         id: action.id
       };
@@ -32,8 +35,10 @@ const itemDetail = (state = initialState, action) => {
     case ITEM_DETAIL_FAILURE:
       return {
         ...state,
+        errorMessage: action.message,
         fetched: false,
-        isFetching: false
+        isFetching: false,
+        hasError: true
       };
     case RECEIVE_ITEM_DETAIL:
       return {

@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchItemDetail } from '../state/actions';
+import Alert from '../components/Alert';
 import ProductDetail from '../components/ProductDetail';
+import { fetchItemDetail } from '../state/actions';
 
 /* eslint-disable */
 class DisplayItemDetail extends Component {
   static propTypes = {
     categories: PropTypes.array,
-    items: PropTypes.array,
-    location: PropTypes.object,
-    getDetail: PropTypes.func.isRequired
+    errorMessage: PropTypes.string,
+    getDetail: PropTypes.func.isRequired,
+    hasError: PropTypes.bool,
+    item: PropTypes.array,
+    location: PropTypes.object
   };
 
   componentDidMount() {
@@ -27,14 +30,18 @@ class DisplayItemDetail extends Component {
   }
 
   render() {
-    const { item, categories, isFetching } = this.props;
+    const { categories, errorMessage, hasError, isFetching, item } = this.props;
     return (
       <div>
-        <ProductDetail
-          item={item}
-          categories={categories}
-          isFetching={isFetching}
-        />
+        {hasError ? (
+          <Alert message={errorMessage} />
+        ) : (
+          <ProductDetail
+            item={item}
+            categories={categories}
+            isFetching={isFetching}
+          />
+        )}
       </div>
     );
   }
@@ -42,6 +49,8 @@ class DisplayItemDetail extends Component {
 
 const mapStateToProps = state => ({
   categories: state.itemDetail.categories,
+  errorMessage: state.itemDetail.errorMessage,
+  hasError: state.itemDetail.hasError,
   isFetching: state.itemDetail.isFetching,
   item: state.itemDetail.data
 });

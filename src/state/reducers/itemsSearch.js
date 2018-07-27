@@ -6,9 +6,11 @@ import {
 } from '../actions';
 
 const initialState = {
-  data: [],
   categories: [],
+  data: [],
+  errorMessage: '',
   fetched: false,
+  hasError: false,
   isFetching: false,
   lastFetchedOn: false,
   query: ''
@@ -19,6 +21,7 @@ const itemsSearch = (state = initialState, action) => {
     case ITEMS_SEARCH_REQUEST:
       return {
         ...state,
+        hasError: false,
         isFetching: true,
         query: action.query
       };
@@ -32,8 +35,10 @@ const itemsSearch = (state = initialState, action) => {
     case ITEMS_SEARCH_FAILURE:
       return {
         ...state,
+        errorMessage: action.message,
         fetched: false,
-        isFetching: false
+        isFetching: false,
+        hasError: true
       };
     case RECEIVE_SEARCH_ITEMS:
       return {
