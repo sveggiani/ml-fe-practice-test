@@ -53,10 +53,9 @@ export function fetchSearchItems(query) {
         dispatch(itemsSearchSuccess());
         dispatch(receiveSearchItems(response.data));
       })
-      .catch(({ response }) => {
-        const { status } = response;
+      .catch(error => {
         const errorMessage =
-          status === 404
+          error.response && error.response.status === 404
             ? 'No se encontraron productos para su búsqueda :('
             : 'Ocurrió un error desconocido. Por favor intente nuevamente';
         dispatch(itemsSearchFailure(errorMessage));
@@ -100,10 +99,9 @@ export function fetchItemDetail(id) {
         dispatch(itemDetailSuccess());
         dispatch(receiveItemDetail(response.data));
       })
-      .catch(({ response }) => {
-        const { status } = response;
+      .catch(error => {
         const errorMessage =
-          status === 404
+          error.response && error.response.status === 404
             ? 'No encontró el producto solicitado :('
             : 'Ocurrió un error desconocido. Por favor intente nuevamente';
         dispatch(itemDetailFailure(errorMessage));
