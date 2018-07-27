@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 import uuidv1 from 'uuid/v1';
 
 import './index.scss';

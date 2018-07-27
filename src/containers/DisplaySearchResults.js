@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { parse as qsParse } from 'query-string';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { parse as qsParse } from 'query-string';
 
 import Alert from '../components/Alert';
 import ProductsList from '../components/ProductsList';

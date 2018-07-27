@@ -2,6 +2,7 @@ import React from 'react';
 
 import Brand from '../Brand';
 import SearchItems from '../../containers/SearchItems';
+
 import './index.scss';
 
 const Topbar = () => (

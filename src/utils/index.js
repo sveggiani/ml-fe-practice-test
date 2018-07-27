@@ -6,7 +6,7 @@ const formatPrice = price => {
   }
   return (
     <span className="formatted-price">
-      $ {price.amount.toLocaleString()}
+      $ {price.amount}
       {price.decimals && (
         <span className="formatted-price__decimals">
           .

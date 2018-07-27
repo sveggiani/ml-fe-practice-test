@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Breadcrumbs from '../Breadcrumbs';
 import Spinner from '../Spinner';
