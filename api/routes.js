@@ -93,6 +93,7 @@ const apiRouter = app => {
         categories: categoryDetail.path_from_root.map(item => item.name),
         item: {
           id: itemDetail.id,
+          condition: itemDetail.condition,
           title: itemDetail.title,
           price: {
             amount: itemDetail.price.toString().split('.')[0],
