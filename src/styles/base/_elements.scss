@@ -2,3 +2,12 @@ body {
   background-color: $gallery;
   font-family: 'Open Sans', sans-serif;
 }
+
+.formatted-price {
+  @at-root &__decimals {
+    @at-root &__digits {
+      font-size: 45%;
+      vertical-align: super;
+    }
+  }
+}

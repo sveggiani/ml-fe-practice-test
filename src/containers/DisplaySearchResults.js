@@ -10,6 +10,7 @@ class DisplaySearchResults extends Component {
   static propTypes = {
     categories: PropTypes.array,
     items: PropTypes.array,
+    isFetching: PropTypes.bool,
     location: PropTypes.object,
     searchItems: PropTypes.func.isRequired
   };
@@ -35,10 +36,14 @@ class DisplaySearchResults extends Component {
   }
 
   render() {
-    const { items, categories } = this.props;
+    const { categories, items, isFetching } = this.props;
     return (
       <div>
-        <ProductsList items={items} categories={categories} />
+        <ProductsList
+          items={items}
+          categories={categories}
+          isFetching={isFetching}
+        />
       </div>
     );
   }

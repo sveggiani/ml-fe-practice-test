@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Breadcrumbs from '../Breadcrumbs';
+import Spinner from '../Spinner';
+import { formatPrice } from '../../utils';
+
 import ShippingIcon from '../../assets/images/ic_shipping.png';
 import './index.scss';
 
-const formatPrice = price =>
-  `${price.amount}${price.decimals ? `.${price.decimals}` : ''}`;
-
-const ProductsList = ({ items, categories }) => (
+const ProductsList = ({ categories, items, isFetching }) => (
   <Fragment>
-    {items.length && (
+    {!isFetching && items.length ? (
       <div className="products-list">
         <div className="products-list__header">
           <Breadcrumbs items={categories} />
@@ -28,7 +28,7 @@ const ProductsList = ({ items, categories }) => (
               </div>
               <div className="detail">
                 <p className="price">
-                  {`$ ${formatPrice(item.price)}`}
+                  {formatPrice(item.price)}
                   {item.free_shipping && (
                     <img
                       className="icon"
@@ -46,13 +46,16 @@ const ProductsList = ({ items, categories }) => (
           ))}
         </div>
       </div>
+    ) : (
+      <Spinner />
     )}
   </Fragment>
 );
 
 ProductsList.propTypes = {
   categories: PropTypes.array,
-  items: PropTypes.array
+  items: PropTypes.array,
+  isFetching: PropTypes.bool
 };
 
 export default ProductsList;
